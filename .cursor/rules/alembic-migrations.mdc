@@ -1,0 +1,16 @@
+---
+description: Alembic em migrations/ — comandos, nomes de revisão e env.py
+globs: migrations/**/*
+alwaysApply: false
+---
+
+# Migrações Alembic
+
+- Rodar a partir da **raiz do repositório** com config explícito:
+
+  `uv run alembic -c migrations/alembic.ini <comando>`
+
+- **`make migrate`** aplica `upgrade head` (usa `POSTGRES_HOST` default `localhost` fora do Compose).
+- Nova revisão interativa: **`make migration`** ou `scripts/create_migration.sh` — renomeia o arquivo para o padrão `YYYY-MM-DD_HH:MM:SS_<slug>.py`.
+- **`--autogenerate`**: modelos novos ou alterados precisam estar **importados em `migrations/env.py`** para entrarem no `Base.metadata`; senão o autogenerate ignora.
+- Manter revisões **idempotentes** e alinhadas aos models em `domain/models/`; não editar revisões já aplicadas em ambientes compartilhados sem consenso.

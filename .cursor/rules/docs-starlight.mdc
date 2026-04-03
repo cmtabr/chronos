@@ -1,0 +1,11 @@
+---
+description: Site de documentação Astro Starlight em docs/
+globs: docs/**/*
+alwaysApply: false
+---
+
+# Documentação (`docs/`)
+
+- Projeto **Astro Starlight**; dependências e scripts com **npm** dentro de `docs/` (versão Node sugerida em `docs/.nvmrc`).
+- Desenvolvimento: `cd docs && npm install && npm run dev`; build estático: `npm run build` (saída em `docs/dist/`).
+- Conteúdo e navegação seguem a estrutura e frontmatter já usados no site; não misturar lógica da API Python aqui — apenas documentação e assets do Starlight.

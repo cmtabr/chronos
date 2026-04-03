@@ -1,0 +1,18 @@
+---
+description: Visão geral do Chronos, stack e comandos do repositório
+alwaysApply: true
+---
+
+# Chronos — contexto do projeto
+
+- **Stack**: Python 3.12+, FastAPI, SQLAlchemy 2, Pydantic / pydantic-settings, PostgreSQL (psycopg), Alembic em `migrations/`.
+- **Pacote**: código em `src/` (wheel aponta para `src` no `pyproject.toml`). Dependências: `uv sync`; ambiente local: `make setup`, `make dev`, `make migrate` (ver `Makefile`).
+- **Camadas** (não inverter dependências):
+  - `core/` — HTTP: routers, schemas Pydantic, middlewares, `dependencies.py` por recurso.
+  - `domain/` — regras: models ORM, services, contratos `ABC` em `repositories/`, exceções de domínio.
+  - `infrastructure/` — sessão DB, implementações de repositórios, integrações externas.
+  - `configs/` — settings; `utlis/` — utilitários compartilhados (nome da pasta como no repo).
+- **Docs do produto**: site estático Astro Starlight em `docs/` (Node conforme `docs/.nvmrc`).
+- **API**: prefixo de exemplo `/api/v1/...`; docs em `/api/v1/docs` (`src/main.py`). Handlers globais de exceções de domínio ficam no `main` ou módulo dedicado.
+
+Ao sugerir alterações, prefira seguir os padrões já usados em `core/routers/user/`, `domain/services/user.py` e `infrastructure/database/repositories/user.py`.

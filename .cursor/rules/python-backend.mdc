@@ -1,0 +1,24 @@
+---
+description: Convenções Python/FastAPI em src/ (camadas, Ruff, imports)
+globs: src/**/*.py
+alwaysApply: false
+---
+
+# Backend Python (`src/`)
+
+## Ruff / estilo
+
+- Alvo **py312**, linha **88**, aspas **duplas** (`pyproject.toml`).
+- **isort**: first-party `core`, `domain`, `infrastructure` — manter imports agrupados e consistentes com o projeto.
+
+## Direção das dependências
+
+- **Routers** (`core/routers/`): dependem de services e schemas; montam `response_model` com schemas; constroem ORM só quando o fluxo já faz isso no projeto (ex.: `UserModel` no POST), delegando persistência ao **service**.
+- **Services** (`domain/services/`): recebem repositório por construtor; sem detalhes de HTTP nem FastAPI.
+- **Repositórios**: interface ABC em `domain/repositories/`; implementação em `infrastructure/database/repositories/` (ou subpastas por integração).
+- **Exceções de domínio** (`domain/exceptions/`): levantadas na infra/services; mapeadas para respostas HTTP no `main` ou handlers dedicados.
+
+## FastAPI
+
+- `APIRouter` com `prefix` e `tags`; tipagem com `Annotated[..., Depends(...)]` onde o código já usa esse padrão.
+- Schemas de entrada/saída em `core/schemas/`; models SQLAlchemy em `domain/models/`.

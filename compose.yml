@@ -28,8 +28,6 @@ services:
       dockerfile: src/Dockerfile
     working_dir: /app
     command:
-      - uv
-      - run
       - uvicorn
       - main:app
       - --host

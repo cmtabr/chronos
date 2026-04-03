@@ -1,0 +1,34 @@
+---
+title: Chronos
+description: Documentação do projeto Chronos — API FastAPI, persistência com SQLAlchemy e PostgreSQL.
+template: splash
+hero:
+  title: Chronos
+  tagline: API REST em FastAPI com modelos Pydantic, SQLAlchemy e PostgreSQL. Documentação viva do repositório.
+  actions:
+    - text: Introdução
+      link: /intro/
+      icon: right-arrow
+    - text: Código no GitHub
+      link: https://github.com/cmtabr/chronos
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Sobre o projeto
+
+O **Chronos** é o backend deste repositório: uma aplicação [FastAPI](https://fastapi.tiangolo.com/) com OpenAPI interativa em `/api/v1/docs` quando o servidor está em execução. Os modelos usam [Pydantic](https://docs.pydantic.dev/); a camada de dados usa [SQLAlchemy](https://www.sqlalchemy.org/) com [PostgreSQL](https://www.postgresql.org/) via [psycopg](https://www.psycopg.org/).
+
+<CardGrid stagger>
+	<Card title="Começar pela introdução" icon="open-book">
+		Visão geral da documentação e próximos passos em [Introdução](/intro/).
+	</Card>
+	<Card title="Explorar a API" icon="rocket">
+		Com o serviço a correr, use a UI OpenAPI em `/api/v1/docs` para experimentar os endpoints.
+	</Card>
+	<Card title="Contribuir" icon="pencil">
+		Edite estes ficheiros em `docs/src/content/docs/`; o link **Editar página** no rodapé aponta para o GitHub.
+	</Card>
+</CardGrid>
